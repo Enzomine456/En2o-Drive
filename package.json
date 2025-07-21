@@ -1,0 +1,122 @@
+{
+  "name": "en2o-drive",
+  "version": "1.0.0",
+  "description": "A modern ride-sharing app with direct negotiation between driver and passenger.",
+  "keywords": ["react", "vite", "nextjs", "ride-sharing", "typescript", "en2o-drive"],
+  "license": "MIT",
+  "repository": "https://github.com/En2o/en2o-drive",
+  "author": "En2o Team",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "dev:next": "next dev documentation-site",
+    "dev:ladle": "ladle serve",
+    "build": "pnpm build:clean && pnpm build:lib && pnpm build:docs && pnpm build:ladle && pnpm build:copy",
+    "build:clean": "rimraf dist public/ladle documentation-site/.next",
+    "build:lib": "cross-env NODE_ENV=production babel ./src --out-dir ./dist --config-file ./publish/.babelrc.js --extensions '.ts,.tsx,.js' --ignore '**/*.test.*','**/__tests__/**','**/test/**'",
+    "build:lib:dts": "tsc -p tsconfig.dist.json || true",
+    "build:docs": "next build documentation-site",
+    "build:ladle": "ladle build",
+    "build:copy": "mkdirp public && mv build public/ladle && cp -r documentation-site/out/* public",
+    "preview:docs": "npx serve documentation-site/out",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write .",
+    "test": "echo 'Add your test command here' && exit 0",
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build:storybook": "storybook build"
+  },
+  "dependencies": {
+    "csstype": "2.6.11",
+    "just-extend": "4.1.1",
+    "memoize-one": "5.0.0",
+    "polished": "^4.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-focus-lock": "^2.8.1",
+    "react-hook-form": "^7.30.0",
+    "react-is": "^17.0.2",
+    "react-movable": "^3.0.4",
+    "react-multi-ref": "^1.0.0",
+    "resize-observer-polyfill": "1.5.1",
+    "styletron-standard": "^3.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "styletron-react": ">=6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/generator": "^7.23.6",
+    "@babel/plugin-transform-class-properties": "^7.23.3",
+    "@babel/preset-env": "^7.23.6",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@babel/template": "^7.22.15",
+    "@babel/traverse": "^7.23.6",
+    "@babel/types": "^7.23.6",
+    "@ladle/react": "^4.0.2",
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "^14.0.4",
+    "@stackblitz/sdk": "^1.9.0",
+    "@types/mdx": "^2.0.10",
+    "@types/node": "^20.19.0",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "babel-plugin-transform-styletron-display-name": "^1.2.0",
+    "codesandboxer": "^1.0.3",
+    "core-js": "^3.34.0",
+    "cross-env": "^7.0.3",
+    "email-validator": "^2.0.4",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.1.0",
+    "just-omit": "^1.1.0",
+    "just-pick": "^2.1.0",
+    "next": "^14.1.0",
+    "prettier": "^3.1.1",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prism-react-renderer": "^1.0.1",
+    "raw-loader": "^4.0.2",
+    "react-codesandboxer": "^3.1.5",
+    "react-compare-image": "^2.0.3",
+    "react-icons": "^3.8.0",
+    "@uiw/react-textarea-code-editor": "^3.1.1",
+    "sharp": "^0.33.1",
+    "styletron-engine-monolithic": "^1.0.0",
+    "typescript": "5.3.3",
+    "vite": "^5.3.2",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite-plugin-dts": "^3.7.0",
+    "storybook": "^8.0.0",
+    "@storybook/react": "^8.0.0",
+    "@storybook/addon-essentials": "^8.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "@types/react": "18",
+        "react": "18",
+        "react-dom": "18",
+        "typescript": "5"
+      }
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,css,md}": ["prettier --write", "eslint --fix"]
+  }
+}

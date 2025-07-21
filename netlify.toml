@@ -1,0 +1,15 @@
+[build]
+  command = "npm install --legacy-peer-deps && npm run build:docs"
+  publish = "documentation-site/out"
+
+[build.environment]
+  # Set the Node.js version to match your project's requirements
+  NODE_VERSION = "18"
+  # Set the npm version if needed
+  NPM_VERSION = "10"
+
+# Redirects and headers can be configured here if needed
+# For example, a basic redirect rule:
+# [[redirects]]
+#   from = "/old-path"
+#   to = "/new-path" 
